@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cerro Torre · Compositor de Mensagem Eficaz</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css" />
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#fff;--bg2:#f7f6f2;--bg3:#f0efe8;
+  --text:#1a1a1a;--text2:#666;--text3:#aaa;
+  --border:rgba(0,0,0,.11);--border2:rgba(0,0,0,.2);
+  --accent:#1a3a2a;--accent-light:#e8f2ec;--accent-text:#1a3a2a;
+  --success-bg:#eaf3de;--success-text:#3b6d11;
+  --info-bg:#e8f0fd;--info-text:#1a4fc4;
+  --danger-bg:#fcebeb;--danger-text:#a32d2d;
+  --radius:8px;--radius-lg:14px;
+}
+@media(prefers-color-scheme:dark){
+  :root{
+    --bg:#1c1c1c;--bg2:#252525;--bg3:#2e2e2e;
+    --text:#f0f0f0;--text2:#999;--text3:#555;
+    --border:rgba(255,255,255,.1);--border2:rgba(255,255,255,.2);
+    --accent:#4caf7d;--accent-light:#1a2e22;--accent-text:#4caf7d;
+    --success-bg:#173404;--success-text:#97c459;
+    --info-bg:#1a2a4a;--info-text:#7eaaff;
+    --danger-bg:#2e0f0f;--danger-text:#f09595;
+  }
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg3);color:var(--text);min-height:100vh}
+.site-header{background:var(--accent);color:#fff;padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-icon{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:18px}
+.logo-text{font-size:17px;font-weight:500}
+.logo-sub{font-size:11px;opacity:.65;margin-top:1px}
+.header-badge{font-size:11px;padding:4px 12px;border-radius:20px;background:rgba(255,255,255,.15);font-weight:500}
+.hero{background:var(--accent-light);border-bottom:0.5px solid var(--border);padding:1.25rem 1.5rem}
+.hero-title{font-size:15px;font-weight:500;color:var(--accent-text);margin-bottom:4px}
+.hero-desc{font-size:13px;color:var(--text2);line-height:1.6;max-width:680px}
+.container{max-width:780px;margin:0 auto;padding:1.5rem 1rem}
+.card{background:var(--bg);border-radius:var(--radius-lg);border:0.5px solid var(--border);padding:1.25rem;margin-bottom:1rem}
+.card-title{font-size:14px;font-weight:500;color:var(--text);margin-bottom:1rem;display:flex;align-items:center;gap:8px}
+.card-title i{font-size:16px;color:var(--text2)}
+.field{margin-bottom:1rem}
+.field:last-child{margin-bottom:0}
+label{display:block;font-size:11px;font-weight:500;color:var(--text2);margin-bottom:4px;text-transform:uppercase;letter-spacing:.04em}
+textarea{width:100%;padding:9px 11px;border:0.5px solid var(--border);border-radius:var(--radius);background:var(--bg);color:var(--text);font-family:inherit;font-size:13.5px;resize:vertical;line-height:1.6;outline:none;transition:border .15s}
+textarea:focus{border-color:var(--accent)}
+input[type=text]{width:100%;padding:9px 11px;border:0.5px solid var(--border);border-radius:var(--radius);background:var(--bg);color:var(--text);font-family:inherit;font-size:13.5px;outline:none;transition:border .15s}
+input[type=text]:focus{border-color:var(--accent)}
+.hint{font-size:11px;color:var(--text3);margin-top:4px;line-height:1.5}
+.counter{font-size:11px;color:var(--text3);text-align:right;margin-top:3px}
+.upload-area{border:0.5px dashed var(--border2);border-radius:var(--radius);padding:14px 16px;display:flex;align-items:center;gap:10px;cursor:pointer;transition:background .15s;margin-top:4px}
+.upload-area:hover{background:var(--bg2)}
+.upload-area i{font-size:22px;color:var(--text3)}
+.upload-label{font-size:13px;color:var(--text2);flex:1}
+.upload-label span{font-size:11px;color:var(--text3);display:block;margin-top:2px}
+.file-pill{display:inline-flex;align-items:center;gap:6px;background:var(--bg2);border:0.5px solid var(--border2);border-radius:20px;padding:5px 12px;font-size:12px;color:var(--text);margin-top:8px}
+.file-pill i{font-size:13px;color:var(--text2)}
+.remove-file{background:none;border:none;cursor:pointer;font-size:14px;color:var(--text3);padding:0;margin-left:2px;display:flex;align-items:center;font-family:inherit}
+.remove-file:hover{color:var(--danger-text)}
+.divider{height:0.5px;background:var(--border);margin:1rem 0}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:1.25rem}
+.btn{padding:9px 20px;font-size:13px;font-weight:500;border-radius:var(--radius);cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:6px;transition:opacity .15s,transform .1s}
+.btn:active{transform:scale(.97)}
+.btn-primary{background:var(--accent);color:#fff;border:none}
+.btn-primary:hover{opacity:.88}
+.btn-secondary{background:transparent;color:var(--text);border:0.5px solid var(--border2)}
+.btn-secondary:hover{background:var(--bg2)}
+.status{font-size:12.5px;margin-top:.75rem;padding:8px 12px;border-radius:var(--radius);display:none;line-height:1.5}
+.status.show{display:block}
+.status.ok{background:var(--success-bg);color:var(--success-text)}
+.status.err{background:var(--danger-bg);color:var(--danger-text)}
+.status.info{background:var(--info-bg);color:var(--info-text)}
+.protocol-note{font-size:11.5px;color:var(--text3);display:flex;align-items:flex-start;gap:6px;margin-top:.75rem;line-height:1.5;padding:10px 12px;background:var(--bg2);border-radius:var(--radius);border:0.5px solid var(--border)}
+.protocol-note i{font-size:14px;margin-top:1px;flex-shrink:0;color:var(--accent-text)}
+.preview-box{display:none;margin-top:1rem}
+.preview-box.show{display:block}
+.preview-label{font-size:11px;font-weight:500;color:var(--text2);text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px}
+.preview-content{font-size:12.5px;line-height:1.7;color:var(--text);white-space:pre-wrap;background:var(--bg2);border:0.5px solid var(--border);border-radius:var(--radius);padding:14px;max-height:280px;overflow-y:auto}
+.site-footer{text-align:center;padding:1.5rem;font-size:12px;color:var(--text3);border-top:0.5px solid var(--border);margin-top:1.5rem}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="logo">
+    <div class="logo-icon">⛰️</div>
+    <div>
+      <div class="logo-text">Cerro Torre</div>
+      <div class="logo-sub">Compositor de Mensagem Eficaz</div>
+    </div>
+  </div>
+  <span class="header-badge">Protocolo de Mensagem Eficaz</span>
+</header>
+
+<div class="hero">
+  <div class="hero-title">Componha mensagens orientadas a resultado</div>
+  <div class="hero-desc">Preencha os campos, clique em "Montar prompt" e o programa gera um prompt estruturado com o Protocolo de Mensagem Eficaz embutido. Copie e cole no Claude.ai em um clique.</div>
+</div>
+
+<div class="container">
+
+  <div class="card">
+    <div class="card-title"><i class="ti ti-message-2"></i> A mensagem</div>
+    <div class="field">
+      <label>1 — Texto ou ideia da mensagem</label>
+      <textarea id="f-msg" rows="4" placeholder="Escreva aqui o que você quer comunicar — pode ser rascunho, tópicos soltos ou ideia bruta. O Claude vai transformar isso numa mensagem eficaz." oninput="count('f-msg','c-msg')"></textarea>
+      <div class="counter" id="c-msg">0 caracteres</div>
+    </div>
+    <div class="field">
+      <label>2 — Para quem vai ser dirigida</label>
+      <input type="text" id="f-dest" placeholder="Ex: meu cliente da empresa XYZ, meu chefe direto, a equipe de vendas..." />
+      <div class="hint">Descreva livremente — cargo, nome, perfil, relação com você.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><i class="ti ti-info-circle"></i> Detalhes da situação</div>
+
+    <div class="field">
+      <label>3.1 — Arquivo descritivo do destinatário <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:10px">(opcional — .txt ou .pdf)</span></label>
+      <div class="upload-area" onclick="document.getElementById('file-input').click()">
+        <i class="ti ti-upload"></i>
+        <div class="upload-label">
+          Clique para anexar um arquivo
+          <span>Aceita .txt ou .pdf — perfil, histórico, briefing, contrato...</span>
+        </div>
+      </div>
+      <input type="file" id="file-input" accept=".txt,.pdf" style="display:none" onchange="handleFile(this)" />
+      <div id="file-pill-area"></div>
+      <div class="hint" style="margin-top:6px">O conteúdo é lido localmente — nenhum dado é enviado a servidores externos.</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="field">
+      <label>3.2 — Descreva a situação</label>
+      <textarea id="f-sit" rows="5" placeholder="Descreva o contexto com o máximo de detalhes. Exemplo:&#10;&#10;O cliente está insatisfeito e fez a seguinte reclamação: [...]&#10;Porém, o contrato assinado em [data], cláusula 4.2, define que [...]&#10;Nossa última comunicação foi em [data] e o tom foi [...]" oninput="count('f-sit','c-sit')"></textarea>
+      <div class="counter" id="c-sit">0 caracteres</div>
+      <div class="hint">Quanto mais contexto, melhor o Claude entende o que está em jogo.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><i class="ti ti-target"></i> Resultado esperado</div>
+    <div class="field">
+      <label>4 — Qual o melhor resultado que essa mensagem pode alcançar?</label>
+      <textarea id="f-res" rows="3" placeholder="Ex: Que o cliente entenda a situação sem se sentir atacado e concorde em agendar uma reunião para resolver juntos. Que o relacionamento seja preservado." oninput="count('f-res','c-res')"></textarea>
+      <div class="counter" id="c-res">0 caracteres</div>
+      <div class="hint">Pense no melhor cenário possível — não no que é provável, mas no que seria ideal.</div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button class="btn btn-primary" onclick="montar()">
+      <i class="ti ti-wand"></i> Montar prompt
+    </button>
+    <button class="btn btn-secondary" onclick="limpar()">
+      <i class="ti ti-refresh"></i> Limpar tudo
+    </button>
+  </div>
+
+  <div class="status" id="status"></div>
+
+  <div class="protocol-note">
+    <i class="ti ti-shield-check"></i>
+    <span>O prompt gerado inclui automaticamente o <strong>Protocolo de Mensagem Eficaz</strong> — orientado a preservar o relacionamento, aumentar a potência de agir do destinatário e ser avaliado pelo resultado que consegue, não pela emoção que expressa.</span>
+  </div>
+
+  <div class="preview-box" id="preview-box">
+    <div class="divider" style="margin-top:1rem"></div>
+    <div class="preview-label">Prompt gerado — pronto para o Claude</div>
+    <div class="preview-content" id="preview-content"></div>
+    <div class="actions" style="margin-top:.75rem">
+      <button class="btn btn-primary" onclick="copiarEAbrir()">
+        <i class="ti ti-external-link"></i> Copiar e abrir Claude ↗
+      </button>
+      <button class="btn btn-secondary" onclick="copiarApenas()">
+        <i class="ti ti-copy"></i> Só copiar
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  Cerro Torre · Compositor de Mensagem Eficaz · Funciona em qualquer navegador · Nenhum dado é enviado a servidores externos
+</footer>
+
+<script>
+const PROTOCOLO = `PROTOCOLO DE MENSAGEM EFICAZ (diretriz interna — não mencionar ao destinatário):
+A mensagem deve preservar e fortalecer o relacionamento com o destinatário. Deve orientar-se por afetos que aumentem a potência de agir de quem recebe — nunca diminuí-la. Deve ser avaliada pelo resultado que consegue produzir, não pela emoção que expressa. Em situações de conflito, o objetivo é abrir caminho, não fechar portas. A mensagem eficaz transforma tensão em movimento construtivo.`;
+
+let promptGerado = '';
+let conteudoArquivo = '';
+let nomeArquivo = '';
+
+function count(fid, cid){
+  document.getElementById(cid).textContent = document.getElementById(fid).value.length.toLocaleString('pt-BR') + ' caracteres';
+}
+
+function setStatus(msg, type){
+  const el = document.getElementById('status');
+  el.innerHTML = msg;
+  el.className = 'status show ' + type;
+}
+
+function v(id){ return document.getElementById(id).value.trim(); }
+
+function handleFile(input){
+  const file = input.files[0];
+  if(!file) return;
+  const ext = file.name.split('.').pop().toLowerCase();
+  if(ext !== 'txt' && ext !== 'pdf'){
+    setStatus('Formato não suportado. Use .txt ou .pdf.', 'err');
+    return;
+  }
+  nomeArquivo = file.name;
+  if(ext === 'txt'){
+    const reader = new FileReader();
+    reader.onload = e => { conteudoArquivo = e.target.result; mostrarPill(); };
+    reader.readAsText(file);
+  } else {
+    setStatus('Carregando PDF...', 'info');
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js';
+    script.onload = () => {
+      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js';
+      const reader = new FileReader();
+      reader.onload = async e => {
+        try {
+          const pdf = await pdfjsLib.getDocument({data: e.target.result}).promise;
+          let text = '';
+          for(let i = 1; i <= Math.min(pdf.numPages, 20); i++){
+            const page = await pdf.getPage(i);
+            const content = await page.getTextContent();
+            text += content.items.map(s => s.str).join(' ') + '\n';
+          }
+          conteudoArquivo = text.trim();
+          mostrarPill();
+        } catch(err) {
+          setStatus('Erro ao ler o PDF. Tente converter para .txt.', 'err');
+        }
+      };
+      reader.readAsArrayBuffer(file);
+    };
+    document.head.appendChild(script);
+  }
+  input.value = '';
+}
+
+function mostrarPill(){
+  document.getElementById('file-pill-area').innerHTML =
+    `<div class="file-pill"><i class="ti ti-file-text"></i>${nomeArquivo}<button class="remove-file" onclick="removerArquivo()" aria-label="Remover arquivo"><i class="ti ti-x"></i></button></div>`;
+  setStatus('Arquivo carregado: ' + nomeArquivo, 'ok');
+}
+
+function removerArquivo(){
+  conteudoArquivo = ''; nomeArquivo = '';
+  document.getElementById('file-pill-area').innerHTML = '';
+  document.getElementById('file-input').value = '';
+  document.getElementById('status').className = 'status';
+}
+
+function montar(){
+  const msg = v('f-msg'), dest = v('f-dest'), sit = v('f-sit'), res = v('f-res');
+  if(!msg && !sit){
+    setStatus('Preencha ao menos o texto da mensagem ou a descrição da situação.', 'err');
+    return;
+  }
+  const p = [];
+  p.push(PROTOCOLO);
+  p.push('\n---\n');
+  p.push('Você é um especialista em comunicação interpessoal e negociação. Com base nas informações abaixo, redija uma mensagem eficaz, respeitosa e orientada ao melhor resultado possível.\n');
+  if(dest) p.push('DESTINATÁRIO:\n' + dest);
+  if(conteudoArquivo){
+    const trecho = conteudoArquivo.length > 3000 ? conteudoArquivo.substring(0,3000) + '\n[... conteúdo truncado ...]' : conteudoArquivo;
+    p.push('\nPERFIL / CONTEXTO DO DESTINATÁRIO (arquivo: "' + nomeArquivo + '"):\n' + trecho);
+  }
+  if(sit) p.push('\nSITUAÇÃO:\n' + sit);
+  if(msg) p.push('\nTEXTO / IDEIA BASE DA MENSAGEM:\n' + msg);
+  if(res) p.push('\nMELHOR RESULTADO ESPERADO:\n' + res);
+  p.push('\n---\nRedija a mensagem final. Seja direto, claro e humano. Não inclua explicações ou meta-comentários — entregue apenas a mensagem pronta para ser enviada.');
+  promptGerado = p.join('\n');
+  document.getElementById('preview-content').textContent = promptGerado;
+  document.getElementById('preview-box').className = 'preview-box show';
+  setStatus('Prompt montado! Clique em "Copiar e abrir Claude" para usar.', 'ok');
+}
+
+function copiarEAbrir(){
+  navigator.clipboard.writeText(promptGerado).then(() => {
+    setStatus('✓ Prompt copiado! Abrindo Claude.ai — cole com Ctrl+V (ou Cmd+V) e envie.', 'ok');
+    setTimeout(() => window.open('https://claude.ai', '_blank'), 400);
+  }).catch(() => {
+    setStatus('Não foi possível copiar automaticamente. Selecione o texto do prompt e copie manualmente.', 'err');
+    window.open('https://claude.ai', '_blank');
+  });
+}
+
+function copiarApenas(){
+  navigator.clipboard.writeText(promptGerado).then(() => {
+    setStatus('✓ Copiado para a área de transferência!', 'ok');
+  }).catch(() => {
+    setStatus('Selecione o texto do prompt acima e copie manualmente (Ctrl+C).', 'err');
+  });
+}
+
+function limpar(){
+  if(!confirm('Limpar todos os campos?')) return;
+  ['f-msg','f-dest','f-sit','f-res'].forEach(id => document.getElementById(id).value = '');
+  ['c-msg','c-sit','c-res'].forEach(id => document.getElementById(id).textContent = '0 caracteres');
+  removerArquivo();
+  promptGerado = '';
+  document.getElementById('preview-box').className = 'preview-box';
+  document.getElementById('status').className = 'status';
+}
+</script>
+</body>
+</html>
