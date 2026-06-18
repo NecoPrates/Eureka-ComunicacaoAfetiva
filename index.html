@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Comunicação Afetiva</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="app-header">
+      <div>
+        <h1>Comunicação Afetiva</h1>
+        <p>Um ambiente leve para praticar mensagens empáticas, claras e acolhedoras.</p>
+      </div>
+    </header>
+
+    <main class="app-main">
+      <section class="panel">
+        <h2>Escreva sua mensagem</h2>
+        <div class="field-group">
+          <label for="context">Contexto</label>
+          <textarea id="context" rows="4" placeholder="Explique a situação com palavras simples..."></textarea>
+        </div>
+
+        <div class="field-group">
+          <label for="need">O que você precisa transmitir</label>
+          <textarea id="need" rows="4" placeholder="O que você deseja comunicar ou pedir..."></textarea>
+        </div>
+
+        <div class="field-row">
+          <div class="field-group small">
+            <label for="tone">Tom</label>
+            <select id="tone">
+              <option value="acolhedor">Acolhedor</option>
+              <option value="claro">Claro</option>
+              <option value="respeitoso">Respeitoso</option>
+              <option value="direto">Direto</option>
+            </select>
+          </div>
+          <div class="field-group small">
+            <label for="recipient">Para quem</label>
+            <input id="recipient" type="text" placeholder="Ex.: colega, amigo, cliente" />
+          </div>
+        </div>
+
+        <div class="toolbar">
+          <button id="previewBtn" class="btn btn-primary">Gerar mensagem</button>
+          <button id="clearBtn" class="btn btn-secondary">Limpar</button>
+        </div>
+      </section>
+
+      <aside class="panel panel-secondary">
+        <h2>Pré-visualização</h2>
+        <div id="previewBox" class="preview-box">Sua mensagem aparecerá aqui.</div>
+      </aside>
+    </main>
+
+    <footer class="app-footer">
+      <p>Use este ambiente para desenvolver seu novo programa de Comunicação Afetiva.</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
