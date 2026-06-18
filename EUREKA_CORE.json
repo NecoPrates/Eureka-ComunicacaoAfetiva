@@ -1,0 +1,24 @@
+{
+  "version": "1.1.0",
+  "engine_name": "Protocolo EUREKA",
+  "framework_type": "Engenharia de Comunicação Afetiva",
+  "core_logic": {
+    "philosophical_foundation": "Superação do modelo técnico Shannon-Weaver em favor da identidade narrativa [3-5]",
+    "affective_goal": "Hilaritas (Alegria que afeta todas as partes do corpo/mente em equilíbrio) [1, 6, 7]",
+    "ontological_inversion": "Do 'Ser como Falta' para o 'Ser como Potência' (Conatus) [8-10]"
+  },
+  "processing_pipeline": {
+    "step_1_input_validation": ["Receptor_Profile", "Raw_Message", "Objective_Telos"],
+    "step_2_diagnostic_audit": [
+      "Identificar estado afetivo atual (Tristeza/Ressentimento/Medo) [11, 12]",
+      "Mapear barreiras de modulação algorítmica e filtros-bolha [13, 14]",
+      "Detectar o 'Cinismo Esclarecido' no receptor [15, 16]"
+    ],
+    "step_3_transformation": "Conversão de paixões tristes em ações potentes via reconhecimento mútuo [17, 18]"
+  },
+  "output_constraints": {
+    "syntactic": "Seta do discurso voltada ao Outro (Endereçamento) [19]",
+    "semantic": "Uso do 'Sujeito Plural' (Nós) para instituir mundo comum [20-22]",
+    "pragmatic": "Clareza, objetividade e estímulo à causalidade adequada [11, 23]"
+  }
+}

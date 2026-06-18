@@ -44,8 +44,19 @@
           </div>
         </div>
 
+        <div class="field-row">
+          <div class="field-group small">
+            <label for="receptorProfile">Perfil do receptor</label>
+            <input id="receptorProfile" type="text" placeholder="Ex.: paciente, colaborador, amigo" />
+          </div>
+          <div class="field-group small">
+            <label for="telos">Telos</label>
+            <input id="telos" type="text" placeholder="Ex.: mais confiança, alinhamento, reconciliação" />
+          </div>
+        </div>
+
         <div class="toolbar">
-          <button id="previewBtn" class="btn btn-primary">Gerar mensagem</button>
+          <button id="previewBtn" class="btn btn-primary">Processar com EUREKA</button>
           <button id="clearBtn" class="btn btn-secondary">Limpar</button>
         </div>
       </section>
@@ -61,6 +72,7 @@
     </footer>
   </div>
 
+  <script src="EUREKA_PROCESSOR.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
